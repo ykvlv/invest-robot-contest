@@ -1,0 +1,17 @@
+# ide
+.idea/
+
+# proto output
+#investapi/*.go
+
+# output
+cli
+/generate-config
+/run-robot
+/strategy-backtest
+configs/generated/
+logs/
+graphs/
+
+# misc
+.env

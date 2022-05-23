@@ -1,0 +1,30 @@
+jobs:
+  do_checks:
+    runs-on: ubuntu-20.04
+    name: Build project and do checks
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+      - name: Install protoc
+        uses: arduino/setup-protoc@v1
+      - name: Setup dependencies
+        run: make setup
+      - name: Build
+        run: make build
+      - name: Setup linter and tester
+        run: make setup-dev
+      - name: Run linter
+        run: make lint
+      - name: Run tests
+        run: make tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
